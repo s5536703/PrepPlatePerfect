@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.prepplateperfect.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.prepplateperfect.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_organiser"
+        android:name="com.example.prepplateperfect.ui.organiser.OrganiserFragment"
+        android:label="@string/title_organiser"
+        tools:layout="@layout/fragment_organiser" />
+
+    <fragment
+        android:id="@+id/navigations_settings"
+        android:name="com.example.prepplateperfect.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_shopping"
+        android:name="com.example.prepplateperfect.ui.shopping.ShoppingFragment"
+        android:label="@string/title_shopping"
+        tools:layout="@layout/fragment_shopping_list" />
+
+    <fragment
+        android:id="@+id/navigation_cookbook"
+        android:name="com.example.prepplateperfect.ui.cookbook.CookbookFragment"
+        android:label="@string/title_cookbook"
+        tools:layout="@layout/fragment_cookbook">
+        <action
+            android:id="@+id/action_cookbookFragment_to_mealInformationFragment"
+            app:destination="@id/navigation_meal_information" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_meal_information"
+        android:name="com.example.prepplateperfect.ui.mealInformation.MealInformationFragment"
+        android:label="@string/title_meal_information"
+        tools:layout="@layout/fragment_meal_information">
+        <argument
+            android:name="recipeName"
+            app:argType="string" />
+        <argument
+            android:name="recipeDescription"
+            app:argType="string" />
+        <argument
+            android:name="recipeInstructions"
+            app:argType="string" />
+        <argument
+            android:name="cookingTime"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mealInformationFragment_to_shoppingFragment"
+            app:destination="@id/navigation_shopping" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_discover"
+        android:name="com.example.prepplateperfect.ui.discover.DiscoverFragment"
+        android:label="@string/title_discover"
+        tools:layout="@layout/fragment_discover_list" />
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.prepplateperfect.ui.login.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/cookbookFragment"
+        android:name="com.example.prepplateperfect.ui.cookbook.CookbookFragment"
+        android:label="fragment_cookbook"
+        tools:layout="@layout/fragment_cookbook">
+        <action
+            android:id="@+id/action_cookbookFragment_to_recipeDetailFragment"
+            app:destination="@id/navigation_meal_information" />
+    </fragment>
+
+</navigation>

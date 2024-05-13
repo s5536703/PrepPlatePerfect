@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/recipeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/recipeDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:paddingBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/recipeTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:textColor="@color/blue"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/recipeIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:paddingBottom="8dp"
+        android:gravity="start"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:lineSpacingMultiplier="1.2"/>
+
+    <TextView
+        android:id="@+id/recipeInstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:paddingBottom="16dp"/>
+
+    <ImageButton
+        android:id="@+id/btnMoreOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_more_horiz_24"
+        android:background="@android:color/transparent"
+        android:layout_gravity="end"
+        android:contentDescription="TODO" />
+
+</LinearLayout>
