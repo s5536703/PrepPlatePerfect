@@ -79,14 +79,4 @@
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login" />
 
-    <fragment
-        android:id="@+id/cookbookFragment"
-        android:name="com.example.prepplateperfect.ui.cookbook.CookbookFragment"
-        android:label="fragment_cookbook"
-        tools:layout="@layout/fragment_cookbook">
-        <action
-            android:id="@+id/action_cookbookFragment_to_recipeDetailFragment"
-            app:destination="@id/navigation_meal_information" />
-    </fragment>
-
 </navigation>

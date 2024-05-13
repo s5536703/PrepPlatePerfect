@@ -2,6 +2,7 @@ package com.example.prepplateperfect.ui.shopping
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,32 +18,42 @@ class ShoppingFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ShoppingViewModel by viewModels()
+    private var isEditMode = false
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentShoppingListBinding.inflate(inflater, container, false)
+
         setupRecyclerView()
-        binding.addItemButton.setOnClickListener {
-            promptForItemName()
-        }
-        binding.toggleEditModeButton.setOnClickListener {
-            toggleEditMode()
-        }
+        setupListeners()
         observeItems()
+
+        binding.addItemButton.visibility = View.GONE
+
         return binding.root
     }
 
     private fun setupRecyclerView() {
         binding.list.layoutManager = LinearLayoutManager(context)
-        binding.list.adapter = MyItemRecyclerViewAdapterShopping(emptyList(), viewModel::removeItem, viewModel::updateItem, false)
+        binding.list.adapter = MyItemRecyclerViewAdapterShopping(
+            emptyList(), viewModel::removeItem, viewModel::updateItem, isEditMode)
+    }
+
+    private fun setupListeners() {
+        binding.addItemButton.setOnClickListener {
+            if (isEditMode) {
+                promptForItemName()
+            }
+        }
+        binding.toggleEditModeButton.setOnClickListener {
+            toggleEditMode()
+        }
     }
 
     private fun observeItems() {
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            if (items != null) {
-                (binding.list.adapter as MyItemRecyclerViewAdapterShopping).updateItems(items)
-            }
+            Log.d("ShoppingFragment", "Observed items: $items")
+            (binding.list.adapter as MyItemRecyclerViewAdapterShopping).updateItems(items ?: listOf())
         }
     }
 
@@ -62,6 +73,10 @@ class ShoppingFragment : Fragment() {
     }
 
     private fun toggleEditMode() {
+        isEditMode = !isEditMode
+        (binding.list.adapter as MyItemRecyclerViewAdapterShopping).toggleEditMode(isEditMode)
+        binding.addItemButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
+        binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
     }
 
     override fun onDestroyView() {

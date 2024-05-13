@@ -1,5 +1,6 @@
 package com.example.prepplateperfect.ui.shopping
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
@@ -19,24 +20,12 @@ class ShoppingItemDiffCallback(
     private val oldList: List<ShoppingItem>,
     private val newList: List<ShoppingItem>
 ) : DiffUtil.Callback() {
-
-    override fun getOldListSize(): Int {
-        return oldList.size
-    }
-
-    override fun getNewListSize(): Int {
-        return newList.size
-    }
-
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].id == newList[newItemPosition].id
-    }
-
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldItem = oldList[oldItemPosition]
-        val newItem = newList[newItemPosition]
-        return oldItem == newItem
-    }
+    override fun getOldListSize(): Int = oldList.size
+    override fun getNewListSize(): Int = newList.size
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition].id == newList[newItemPosition].id
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition] == newList[newItemPosition]
 }
 
 class MyItemRecyclerViewAdapterShopping(
@@ -65,10 +54,22 @@ class MyItemRecyclerViewAdapterShopping(
         diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class ItemViewHolder(private val binding: FragmentShoppingItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun toggleEditMode(editMode: Boolean) {
+        isEditMode = editMode
+        notifyDataSetChanged()
+    }
+
+    inner class ItemViewHolder(private val binding: FragmentShoppingItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
             binding.itemContent.setOnClickListener {
-                if (isEditMode) showEditDialog(items[adapterPosition])
+                if (isEditMode) {
+                    val position = bindingAdapterPosition // Get the position safely
+                    if (position != RecyclerView.NO_POSITION) {
+                        showEditDialog(items[position])
+                    }
+                }
             }
         }
 
@@ -81,7 +82,14 @@ class MyItemRecyclerViewAdapterShopping(
                 }
             }
             binding.itemDeleteButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
-            binding.itemDeleteButton.setOnClickListener { if (isEditMode) onDelete(item) }
+            binding.itemDeleteButton.setOnClickListener {
+                if (isEditMode) {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onDelete(items[position])
+                    }
+                }
+            }
         }
 
         private fun showEditDialog(item: ShoppingItem) {
@@ -92,7 +100,10 @@ class MyItemRecyclerViewAdapterShopping(
                 .setTitle("Edit Item Name")
                 .setView(editText)
                 .setPositiveButton("Save") { _, _ ->
-                    onItemRename(item, editText.text.toString())
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemRename(items[position], editText.text.toString())
+                    }
                 }
                 .setNegativeButton("Cancel", null)
                 .show()

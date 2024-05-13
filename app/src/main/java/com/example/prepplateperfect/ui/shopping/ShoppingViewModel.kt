@@ -1,30 +1,40 @@
 package com.example.prepplateperfect.ui.shopping
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import java.util.UUID
 
 class ShoppingViewModel : ViewModel() {
-    private val _items = MutableLiveData<MutableList<ShoppingItem>?>(mutableListOf())
-    val items: MutableLiveData<MutableList<ShoppingItem>?> = _items
+    private val _items = MutableLiveData<MutableList<ShoppingItem>>(mutableListOf())
+    val items: MutableLiveData<List<ShoppingItem>> get() = _items as MutableLiveData<List<ShoppingItem>>
 
     fun addItem(content: String) {
-        val newItem = ShoppingItem(UUID.randomUUID().toString(), content, false)
-        val updatedItems = _items.value ?: mutableListOf()
-        updatedItems.add(newItem)
-        _items.value = updatedItems
+        if (_items.value?.any { it.content.equals(content, ignoreCase = true) } != true) {
+            val newItem = ShoppingItem(UUID.randomUUID().toString(), content, false)
+            val updatedItems = _items.value ?: mutableListOf()
+            updatedItems.add(newItem)
+            _items.value = updatedItems
+            Log.d("ShoppingViewModel", "Item added successfully: $content")
+        } else {
+            Log.d("ShoppingViewModel", "Attempt to add duplicate item: $content")
+        }
     }
 
     fun removeItem(item: ShoppingItem) {
-        val updatedItems = _items.value ?: mutableListOf()
-        updatedItems.remove(item)
-        _items.value = updatedItems
+        _items.value?.let {
+            it.remove(item)
+            _items.value = it
+        }
     }
 
     fun updateItem(item: ShoppingItem, newContent: String) {
-        val updatedItems = _items.value?.map {
-            if (it.id == item.id) it.copy(content = newContent) else it
-        }?.toMutableList()
-        _items.value = updatedItems
+        _items.value?.let {
+            val index = it.indexOfFirst { it.id == item.id }
+            if (index != -1) {
+                it[index] = item.copy(content = newContent)
+                _items.value = it
+            }
+        }
     }
 }

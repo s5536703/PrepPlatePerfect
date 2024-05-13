@@ -13,15 +13,6 @@ class CookbookViewModel : ViewModel() {
         _recipes.value = updatedRecipes
     }
 
-    fun deleteRecipe(recipeId: String) {
-        val updatedRecipes = _recipes.value?.toMutableList() ?: mutableListOf()
-        val recipeToRemove = updatedRecipes.find { it.id == recipeId }
-        recipeToRemove?.let {
-            updatedRecipes.remove(it)
-            _recipes.value = updatedRecipes
-        }
-    }
-
     init {
         displayRecipes()
     }
