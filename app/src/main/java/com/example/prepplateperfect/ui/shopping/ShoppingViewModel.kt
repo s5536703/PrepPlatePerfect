@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import java.util.UUID
 
 class ShoppingViewModel : ViewModel() {
-    private val _items = MutableLiveData<MutableList<ShoppingItem>>(mutableListOf())
+    private val _items = MutableLiveData<MutableList<ShoppingItem>>(mutableListOf(
+        ShoppingItem(UUID.randomUUID().toString(), "Example Item", false)
+    ))
     val items: MutableLiveData<List<ShoppingItem>> get() = _items as MutableLiveData<List<ShoppingItem>>
 
     fun addItem(content: String) {

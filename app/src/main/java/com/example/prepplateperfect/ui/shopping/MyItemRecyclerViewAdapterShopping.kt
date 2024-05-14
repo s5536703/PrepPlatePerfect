@@ -63,7 +63,7 @@ class MyItemRecyclerViewAdapterShopping(
     inner class ItemViewHolder(private val binding: FragmentShoppingItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.itemContent.setOnClickListener {
+            binding.itemCheckbox.setOnClickListener {
                 if (isEditMode) {
                     val position = bindingAdapterPosition // Get the position safely
                     if (position != RecyclerView.NO_POSITION) {
