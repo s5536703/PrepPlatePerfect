@@ -1,13 +1,27 @@
 package com.example.prepplateperfect.ui.organiser
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.util.*
 
 class OrganiserViewModel : ViewModel() {
+    private val mealReminders: MutableMap<Calendar, MutableList<MealReminder>> = mutableMapOf()
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Organiser Fragment"
+    fun addMealReminder(day: Calendar, mealReminder: MealReminder) {
+        val dayKey = Calendar.getInstance().apply {
+            set(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH), 0, 0, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        if (!mealReminders.containsKey(dayKey)) {
+            mealReminders[dayKey] = mutableListOf()
+        }
+        mealReminders[dayKey]?.add(mealReminder)
     }
-    val text: LiveData<String> = _text
+
+    fun getMealRemindersForDay(day: Calendar): List<MealReminder> {
+        val dayKey = Calendar.getInstance().apply {
+            set(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH), 0, 0, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        return mealReminders[dayKey] ?: emptyList()
+    }
 }
