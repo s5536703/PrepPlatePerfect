@@ -50,7 +50,7 @@ class CookbookFragment : Fragment() {
     }
 
     private fun addRecipeDialog() {
-        val layout = LayoutInflater.from(context).inflate(R.layout.add_recipe_dialog, null)
+        val layout = LayoutInflater.from(context).inflate(R.layout.dialog_add_recipe, null)
         val recipeNameInput = layout.findViewById<EditText>(R.id.recipeNameInput)
         val recipeDescriptionInput = layout.findViewById<EditText>(R.id.recipeDescriptionInput)
         val recipeTimeInput = layout.findViewById<EditText>(R.id.recipeTimeInput)

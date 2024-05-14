@@ -36,6 +36,7 @@
     <string name="sub_recipe_name">Recipe Name</string>
     <string name="sub_recipe_time">Cooking Time</string>
     <string name="sub_example_item">Example Item</string>
+    <string name="sub_search_hint">Search recipes</string>
     <string name="sub_recipe_description">Description</string>
     <string name="sub_recipe_ingredients">Ingredients</string>
     <string name="sub_recipe_instructions">Instructions</string>
