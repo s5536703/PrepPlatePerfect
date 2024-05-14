@@ -56,7 +56,7 @@ class MyItemRecyclerViewAdapterCookbook(
                     putString("recipeId", recipe.id)
                     putString("recipeName", recipe.name)
                     putString("recipeDescription", recipe.description)
-                    putString("recipeTime", recipe.time)
+                    putString("cookingTime", recipe.time)
                     putString("recipeIngredients", recipe.ingredients)
                     putString("recipeInstructions", recipe.instructions)
                 }

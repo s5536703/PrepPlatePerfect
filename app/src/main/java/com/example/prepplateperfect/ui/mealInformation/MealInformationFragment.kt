@@ -1,17 +1,25 @@
 package com.example.prepplateperfect.ui.mealInformation
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.prepplateperfect.databinding.FragmentMealInformationBinding
+import com.example.prepplateperfect.ui.shopping.ShoppingViewModel
 
 class MealInformationFragment : Fragment() {
     private var _binding: FragmentMealInformationBinding? = null
     private val binding get() = _binding!!
+    private val shoppingViewModel: ShoppingViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentMealInformationBinding.inflate(inflater, container, false)
 
         val recipeName = arguments?.getString("recipeName") ?: "No name"
@@ -27,7 +35,25 @@ class MealInformationFragment : Fragment() {
         binding.recipeIngredients.text = formattedIngredients
         binding.recipeInstructions.text = recipeInstructions
 
+        binding.addToShoppingListButton.setOnClickListener {
+            addToShoppingList(recipeIngredients)
+        }
+
         return binding.root
+    }
+
+    private fun addToShoppingList(ingredients: String) {
+        ingredients.split(",")
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .forEach { ingredient ->
+                shoppingViewModel.addItem(ingredient)
+            }
+        AlertDialog.Builder(requireContext())
+            .setTitle("Ingredients Added")
+            .setMessage("The ingredients have been added to your shopping list.")
+            .setPositiveButton("OK", null)
+            .show()
     }
 
     override fun onDestroyView() {

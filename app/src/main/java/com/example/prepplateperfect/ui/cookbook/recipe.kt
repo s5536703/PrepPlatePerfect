@@ -6,5 +6,6 @@ data class Recipe(
     val description: String,
     val time: String,
     val ingredients: String,
-    val instructions: String
+    val instructions: String,
+    val rating: Double = 0.0
 )

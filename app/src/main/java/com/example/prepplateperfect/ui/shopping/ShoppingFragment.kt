@@ -19,6 +19,7 @@ class ShoppingFragment : Fragment() {
 
     private val viewModel: ShoppingViewModel by viewModels()
     private var isEditMode = false
+    private lateinit var adapter: MyItemRecyclerViewAdapterShopping
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -32,9 +33,10 @@ class ShoppingFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.list.layoutManager = LinearLayoutManager(context)
-        binding.list.adapter = MyItemRecyclerViewAdapterShopping(
+        adapter = MyItemRecyclerViewAdapterShopping(
             emptyList(), viewModel::removeItem, viewModel::updateItem, isEditMode)
+        binding.list.layoutManager = LinearLayoutManager(context)
+        binding.list.adapter = adapter
     }
 
     private fun setupListeners() {
@@ -49,7 +51,7 @@ class ShoppingFragment : Fragment() {
     private fun observeItems() {
         viewModel.items.observe(viewLifecycleOwner) { items ->
             Log.d("ShoppingFragment", "Observed items: $items")
-            (binding.list.adapter as MyItemRecyclerViewAdapterShopping).updateItems(items ?: listOf())
+            adapter.updateItems(items ?: listOf())
         }
     }
 
@@ -70,7 +72,8 @@ class ShoppingFragment : Fragment() {
 
     private fun toggleEditMode() {
         isEditMode = !isEditMode
-        (binding.list.adapter as MyItemRecyclerViewAdapterShopping).toggleEditMode(isEditMode)
+        adapter.toggleEditMode(isEditMode)
+        binding.addItemButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
         binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
     }
 

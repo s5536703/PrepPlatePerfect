@@ -70,8 +70,11 @@
     <fragment
         android:id="@+id/navigation_discover"
         android:name="com.example.prepplateperfect.ui.discover.DiscoverFragment"
-        android:label="@string/title_discover"
-        tools:layout="@layout/fragment_discover_list" />
+        android:label="@string/title_discover">
+        <action
+            android:id="@+id/action_discoverFragment_to_mealInformationFragment"
+            app:destination="@id/navigation_meal_information" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_login"
