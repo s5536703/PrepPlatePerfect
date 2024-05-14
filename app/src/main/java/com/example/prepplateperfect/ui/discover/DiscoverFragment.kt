@@ -14,7 +14,7 @@ class DiscoverFragment : Fragment() {
     private var _binding: FragmentDiscoverBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DiscoverViewModel by viewModels()
-    private lateinit var adapter: MyItemRecyclerViewAdapterDiscover
+    private lateinit var adapter: AdapterDiscover
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDiscoverBinding.inflate(inflater, container, false)
@@ -23,7 +23,7 @@ class DiscoverFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = MyItemRecyclerViewAdapterDiscover(emptyList())
+        adapter = AdapterDiscover(emptyList())
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
 

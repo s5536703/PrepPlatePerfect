@@ -10,9 +10,9 @@ import com.example.prepplateperfect.R
 import com.example.prepplateperfect.databinding.FragmentDiscoverItemBinding
 import com.example.prepplateperfect.ui.cookbook.Recipe
 
-class MyItemRecyclerViewAdapterDiscover(
+class AdapterDiscover(
     private var recipes: List<Recipe>
-) : RecyclerView.Adapter<MyItemRecyclerViewAdapterDiscover.RecipeViewHolder>() {
+) : RecyclerView.Adapter<AdapterDiscover.RecipeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val binding = FragmentDiscoverItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

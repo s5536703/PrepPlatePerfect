@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prepplateperfect.databinding.FragmentCookbookItemBinding
 
-class MyItemRecyclerViewAdapterCookbook(
+class AdapterCookbook(
     private var recipes: List<Recipe>,
     private var isEditMode: Boolean,
     private val onDelete: (String) -> Unit,
     private val onRecipeClick: (Bundle) -> Unit
-) : RecyclerView.Adapter<MyItemRecyclerViewAdapterCookbook.RecipeViewHolder>() {
+) : RecyclerView.Adapter<AdapterCookbook.RecipeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val binding = FragmentCookbookItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

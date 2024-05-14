@@ -1,4 +1,4 @@
-package com.example.prepplateperfect.ui.mealInformation
+package com.example.prepplateperfect.ui.mealInfo
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.prepplateperfect.databinding.FragmentMealInformationBinding
 import com.example.prepplateperfect.ui.shopping.ShoppingViewModel
 
-class MealInformationFragment : Fragment() {
+class MealInfoFragment : Fragment() {
     private var _binding: FragmentMealInformationBinding? = null
     private val binding get() = _binding!!
     private val shoppingViewModel: ShoppingViewModel by viewModels()

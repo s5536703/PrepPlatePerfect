@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/navigation_meal_information"
-        android:name="com.example.prepplateperfect.ui.mealInformation.MealInformationFragment"
+        android:name="com.example.prepplateperfect.ui.mealInfo.MealInfoFragment"
         android:label="@string/title_meal_information"
         tools:layout="@layout/fragment_meal_information">
         <argument

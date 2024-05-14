@@ -19,7 +19,7 @@ class CookbookFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: CookbookViewModel by viewModels()
     private var isEditMode = false
-    private lateinit var adapter: MyItemRecyclerViewAdapterCookbook
+    private lateinit var adapter: AdapterCookbook
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentCookbookBinding.inflate(inflater, container, false)
@@ -29,7 +29,7 @@ class CookbookFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = MyItemRecyclerViewAdapterCookbook(emptyList(), isEditMode, viewModel::deleteRecipe) { bundle ->
+        adapter = AdapterCookbook(emptyList(), isEditMode, viewModel::deleteRecipe) { bundle ->
             findNavController().navigate(R.id.action_cookbookFragment_to_mealInformationFragment, bundle)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
