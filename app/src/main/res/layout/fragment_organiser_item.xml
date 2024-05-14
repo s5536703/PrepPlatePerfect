@@ -9,6 +9,7 @@
         android:id="@+id/mealNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
         android:text="Meal Name"
         android:textSize="16sp"
         android:textColor="@android:color/black" />
@@ -17,6 +18,7 @@
         android:id="@+id/mealTimeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
         android:text="Meal Time"
         android:textSize="16sp"
         android:textColor="@android:color/black" />

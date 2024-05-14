@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,30 +9,46 @@
         android:id="@+id/recipeNameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/recipe_name" />
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/recipe_name"
+        android:autofillHints=""
+        android:inputType="text"
+        tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/recipeDescriptionInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/recipe_description" />
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/recipe_description"
+        android:autofillHints=""
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/recipeTimeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/recipe_time" />
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/recipe_time"
+        android:autofillHints=""
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/recipeIngredientsInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/recipe_ingredients" />
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/recipe_ingredients"
+        android:autofillHints=""
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/recipeInstructionsInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/recipe_instructions" />
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/recipe_instructions"
+        android:autofillHints=""
+        android:inputType="text" />
 
 </LinearLayout>

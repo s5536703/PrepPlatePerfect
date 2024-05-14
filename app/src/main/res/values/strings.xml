@@ -11,7 +11,9 @@
     <string name="title_organiser">Organiser</string>
     <string name="title_shopping">Shopping List</string>
     <string name="title_app_name">PrepPlatePerfect</string>
+    <string name="title_delete_recipe">Delete Recipe</string>
     <string name="title_meal_information">Meal Information</string>
+    <string name="title_add_ingredients">Add Ingredients to Shopping List</string>
 
     <!-- Cookbook -->
     <string name="recipe_name">Recipe Name</string>

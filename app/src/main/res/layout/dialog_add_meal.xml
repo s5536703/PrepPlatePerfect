@@ -9,14 +9,18 @@
         android:id="@+id/mealNameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
         android:hint="Meal Name"
-        android:inputType="text" />
+        android:inputType="text"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/mealTimeInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
         android:hint="Meal Time"
-        android:inputType="text" />
+        android:inputType="text"
+        android:autofillHints="" />
 
 </LinearLayout>
