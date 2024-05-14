@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="@string/recipe_name"
+        android:hint="@string/sub_recipe_name"
         android:autofillHints=""
         android:inputType="text"
         tools:ignore="TextFields" />
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="@string/recipe_description"
+        android:hint="@string/sub_recipe_description"
         android:autofillHints=""
         android:inputType="text" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="@string/recipe_time"
+        android:hint="@string/sub_recipe_time"
         android:autofillHints=""
         android:inputType="text" />
 
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="@string/recipe_ingredients"
+        android:hint="@string/sub_recipe_ingredients"
         android:autofillHints=""
         android:inputType="text" />
 
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="@string/recipe_instructions"
+        android:hint="@string/sub_recipe_instructions"
         android:autofillHints=""
         android:inputType="text" />
 

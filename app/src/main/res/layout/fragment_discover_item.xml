@@ -37,7 +37,7 @@
             android:textSize="16sp"
             android:textColor="@color/blue"
             android:drawablePadding="4dp"
-            android:text="4.5 ★" />
+            android:text="@string/sub_star_rating" />
 
         <ImageButton
             android:id="@+id/infoButton"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_info_outline_24"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Info"
+            android:contentDescription="@string/sub_info"
             android:layout_marginStart="16dp"/>
 
     </LinearLayout>

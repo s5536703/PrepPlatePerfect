@@ -16,7 +16,7 @@
             app:layout_constraintEnd_toStartOf="@id/itemDeleteButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="Example Item"/>
+            android:text="@string/sub_example_item"/>
 
         <ImageButton
             android:id="@+id/itemDeleteButton"
@@ -25,7 +25,7 @@
             android:fontFamily="@font/roboto_medium"
             android:src="@drawable/baseline_clear_24"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Delete"
+            android:contentDescription="@string/btn_delete"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

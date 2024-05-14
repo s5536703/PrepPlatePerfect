@@ -9,19 +9,36 @@
     <string name="title_cookbook">Cookbook</string>
     <string name="title_discover">Discover</string>
     <string name="title_organiser">Organiser</string>
+    <string name="title_your_list">Your List</string>
     <string name="title_shopping">Shopping List</string>
     <string name="title_app_name">PrepPlatePerfect</string>
-    <string name="title_delete_recipe">Delete Recipe</string>
+    <string name="title_your_recipes">Your Recipes</string>
     <string name="title_meal_information">Meal Information</string>
+    <string name="title_trending_recipes">Trending Recipes</string>
     <string name="title_add_ingredients">Add Ingredients to Shopping List</string>
 
-    <!-- Cookbook -->
-    <string name="recipe_name">Recipe Name</string>
-    <string name="recipe_description">Description</string>
-    <string name="recipe_instructions">Instructions</string>
-    <string name="recipe_time">Cooking Time</string>
-    <string name="recipe_ingredients">Ingredients</string>
 
+    <!-- Buttons -->
+    <string name="btn_edit">Edit</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_add_item">Add Item</string>
+    <string name="btn_add_recipe">Add Recipe</string>
+    <string name="btn_delete_recipe">Delete Recipe</string>
+    <string name="btn_toggle_edit_mode">Toggle Edit Mode</string>
+    <string name="btn_add_meal_reminder">Add Meal Reminder</string>
+    <string name="btn_add_to_shopping_list">Add to Shopping List</string>
+
+    <!-- Subtitles -->
+    <string name="sub_info">Info</string>
+    <string name="sub_star_rating">4.5 ★</string>
+    <string name="sub_meal_time">Meal Time</string>
+    <string name="sub_meal_name">Meal Name</string>
+    <string name="sub_recipe_name">Recipe Name</string>
+    <string name="sub_recipe_time">Cooking Time</string>
+    <string name="sub_example_item">Example Item</string>
+    <string name="sub_recipe_description">Description</string>
+    <string name="sub_recipe_ingredients">Ingredients</string>
+    <string name="sub_recipe_instructions">Instructions</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -39,6 +56,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -48,4 +66,5 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
 </resources>

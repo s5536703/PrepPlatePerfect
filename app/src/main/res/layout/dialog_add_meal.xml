@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="Meal Name"
+        android:hint="@string/sub_meal_name"
         android:inputType="text"
         android:autofillHints="" />
 
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:hint="Meal Time"
+        android:hint="@string/sub_meal_time"
         android:inputType="text"
         android:autofillHints="" />
 

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="Trending Recipes"
+        android:text="@string/title_trending_recipes"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/black"

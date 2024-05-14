@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="Meal Name"
+        android:text="@string/sub_meal_name"
         android:textSize="16sp"
         android:textColor="@android:color/black" />
 
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="Meal Time"
+        android:text="@string/sub_meal_time"
         android:textSize="16sp"
         android:textColor="@android:color/black" />
 
