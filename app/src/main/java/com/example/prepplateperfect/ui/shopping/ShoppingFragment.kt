@@ -28,8 +28,6 @@ class ShoppingFragment : Fragment() {
         setupListeners()
         observeItems()
 
-        binding.addItemButton.visibility = View.GONE
-
         return binding.root
     }
 
@@ -41,9 +39,7 @@ class ShoppingFragment : Fragment() {
 
     private fun setupListeners() {
         binding.addItemButton.setOnClickListener {
-            if (isEditMode) {
-                promptForItemName()
-            }
+            promptForItemName()
         }
         binding.toggleEditModeButton.setOnClickListener {
             toggleEditMode()
@@ -75,7 +71,6 @@ class ShoppingFragment : Fragment() {
     private fun toggleEditMode() {
         isEditMode = !isEditMode
         (binding.list.adapter as MyItemRecyclerViewAdapterShopping).toggleEditMode(isEditMode)
-        binding.addItemButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
         binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
     }
 
