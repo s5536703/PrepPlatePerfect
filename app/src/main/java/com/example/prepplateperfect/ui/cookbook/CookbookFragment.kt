@@ -18,24 +18,34 @@ class CookbookFragment : Fragment() {
     private var _binding: FragmentCookbookBinding? = null
     private val binding get() = _binding!!
     private val viewModel: CookbookViewModel by viewModels()
+    private var isEditMode = false
+    private lateinit var adapter: MyItemRecyclerViewAdapterCookbook
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentCookbookBinding.inflate(inflater, container, false)
         setupRecyclerView()
-        binding.addRecipeButton.setOnClickListener {
-            addRecipeDialog()
-        }
+        setupListeners()
         return binding.root
     }
 
     private fun setupRecyclerView() {
+        adapter = MyItemRecyclerViewAdapterCookbook(emptyList(), isEditMode, viewModel::deleteRecipe) { bundle ->
+            findNavController().navigate(R.id.action_cookbookFragment_to_mealInformationFragment, bundle)
+        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = adapter
+
         viewModel.recipes.observe(viewLifecycleOwner) { recipes ->
-            binding.recyclerView.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = MyItemRecyclerViewAdapterCookbook(recipes ?: emptyList()) { bundle ->
-                    findNavController().navigate(R.id.action_cookbookFragment_to_mealInformationFragment, bundle)
-                }
-            }
+            adapter.updateRecipes(recipes ?: emptyList())
+        }
+    }
+
+    private fun setupListeners() {
+        binding.addRecipeButton.setOnClickListener {
+            addRecipeDialog()
+        }
+        binding.toggleEditModeButton.setOnClickListener {
+            toggleEditMode()
         }
     }
 
@@ -64,7 +74,6 @@ class CookbookFragment : Fragment() {
                         time,
                         ingredients,
                         instructions,
-
                     )
                     viewModel.addRecipe(newRecipe)
                 }
@@ -72,6 +81,12 @@ class CookbookFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    private fun toggleEditMode() {
+        isEditMode = !isEditMode
+        adapter.toggleEditMode(isEditMode)
+        binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
     }
 
     override fun onDestroyView() {

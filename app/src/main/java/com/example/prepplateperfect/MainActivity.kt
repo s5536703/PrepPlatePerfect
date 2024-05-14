@@ -1,6 +1,7 @@
 package com.example.prepplateperfect
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -30,17 +31,18 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.navigation_home -> {
+                    navView.visibility = View.VISIBLE
                     navView.menu.setGroupCheckable(0, false, false)
                     for (i in 0 until navView.menu.size()) {
                         navView.menu.getItem(i).isChecked = false
                     }
                 }
                 else -> {
+                    navView.visibility = View.GONE
                     navView.menu.setGroupCheckable(0, true, true)
                 }
             }
         }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
