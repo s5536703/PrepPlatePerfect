@@ -86,6 +86,7 @@ class CookbookFragment : Fragment() {
     private fun toggleEditMode() {
         isEditMode = !isEditMode
         adapter.toggleEditMode(isEditMode)
+        binding.addRecipeButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
         binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
     }
 

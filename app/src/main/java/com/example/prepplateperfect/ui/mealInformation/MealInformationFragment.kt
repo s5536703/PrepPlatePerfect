@@ -15,11 +15,7 @@ class MealInformationFragment : Fragment() {
     private val binding get() = _binding!!
     private val shoppingViewModel: ShoppingViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMealInformationBinding.inflate(inflater, container, false)
 
         val recipeName = arguments?.getString("recipeName") ?: "No name"
@@ -27,7 +23,7 @@ class MealInformationFragment : Fragment() {
         val recipeInstructions = arguments?.getString("recipeInstructions") ?: "No instructions"
         val cookingTime = arguments?.getString("cookingTime") ?: "No time provided"
         val recipeIngredients = arguments?.getString("recipeIngredients") ?: "No ingredients"
-        val formattedIngredients = recipeIngredients.split(",").joinToString("\n")
+        val formattedIngredients = recipeIngredients.split(",").joinToString("\n") { it.trim() }
 
         binding.recipeTitle.text = recipeName
         binding.recipeDescription.text = recipeDescription
