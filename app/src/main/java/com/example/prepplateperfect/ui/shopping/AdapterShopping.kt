@@ -87,9 +87,11 @@ class AdapterShopping(
             binding.itemCheckbox.text = item.content
             binding.itemCheckbox.isChecked = item.isChecked
             binding.itemCheckbox.setTextColor(if (isEditMode) Color.BLACK else Color.BLACK)
+            binding.itemCheckbox.paint.isStrikeThruText = item.isChecked
             binding.itemCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if (!isEditMode) {
                     item.isChecked = isChecked
+                    binding.itemCheckbox.paint.isStrikeThruText = isChecked
                 }
             }
             binding.itemDeleteButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
