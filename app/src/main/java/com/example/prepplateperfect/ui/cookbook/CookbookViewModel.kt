@@ -3,6 +3,16 @@ package com.example.prepplateperfect.ui.cookbook
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+data class Recipe(
+    val id: String,
+    val name: String,
+    val description: String,
+    val time: String,
+    val ingredients: String,
+    val instructions: String,
+    val rating: Double = 0.0
+)
+
 class CookbookViewModel : ViewModel() {
     private val _recipes = MutableLiveData<List<Recipe>>(mutableListOf())
     val recipes: MutableLiveData<List<Recipe>> = _recipes
