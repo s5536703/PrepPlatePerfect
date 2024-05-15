@@ -19,6 +19,21 @@ class CookbookViewModel : ViewModel() {
         _recipes.value = updatedRecipes
     }
 
+    fun updateRecipe(recipe: Recipe, newName: String, newDescription: String, newTime: String, newIngredients: String, newInstructions: String) {
+        val updatedRecipes = _recipes.value?.toMutableList() ?: mutableListOf()
+        val index = updatedRecipes.indexOfFirst { it.id == recipe.id }
+        if (index != -1) {
+            updatedRecipes[index] = recipe.copy(
+                name = newName,
+                description = newDescription,
+                time = newTime,
+                ingredients = newIngredients,
+                instructions = newInstructions
+            )
+            _recipes.value = updatedRecipes
+        }
+    }
+
     init {
         displayRecipes()
     }

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/title_trending_recipes"
+        android:text="@string/title_explore_recipes"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -35,6 +35,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/searchView"
         app:layout_constraintBottom_toBottomOf="parent"/>

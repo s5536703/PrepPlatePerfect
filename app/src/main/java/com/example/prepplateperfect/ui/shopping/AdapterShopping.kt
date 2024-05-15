@@ -2,6 +2,7 @@ package com.example.prepplateperfect.ui.shopping
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,12 +29,12 @@ class ShoppingItemDiffCallback(
         oldList[oldItemPosition] == newList[newItemPosition]
 }
 
-class MyItemRecyclerViewAdapterShopping(
+class AdapterShopping(
     private var items: List<ShoppingItem>,
     private val onDelete: (ShoppingItem) -> Unit,
     private val onItemRename: (ShoppingItem, String) -> Unit,
     var isEditMode: Boolean
-) : RecyclerView.Adapter<MyItemRecyclerViewAdapterShopping.ItemViewHolder>() {
+) : RecyclerView.Adapter<AdapterShopping.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = FragmentShoppingItemBinding.inflate(
@@ -71,25 +72,27 @@ class MyItemRecyclerViewAdapterShopping(
                     }
                 }
             }
-        }
-
-        fun bind(item: ShoppingItem) {
-            binding.itemCheckbox.text = item.content
-            binding.itemCheckbox.isChecked = item.isChecked
-            binding.itemCheckbox.setOnCheckedChangeListener { _, isChecked ->
-                if (!isEditMode) {
-                    item.isChecked = isChecked
-                }
-            }
-            binding.itemDeleteButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
             binding.itemDeleteButton.setOnClickListener {
                 if (isEditMode) {
+                    binding.itemCheckbox.setTextColor(Color.RED)
                     val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         onDelete(items[position])
                     }
                 }
             }
+        }
+
+        fun bind(item: ShoppingItem) {
+            binding.itemCheckbox.text = item.content
+            binding.itemCheckbox.isChecked = item.isChecked
+            binding.itemCheckbox.setTextColor(if (isEditMode) Color.BLACK else Color.BLACK)
+            binding.itemCheckbox.setOnCheckedChangeListener { _, isChecked ->
+                if (!isEditMode) {
+                    item.isChecked = isChecked
+                }
+            }
+            binding.itemDeleteButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
         }
 
         private fun showEditDialog(item: ShoppingItem) {

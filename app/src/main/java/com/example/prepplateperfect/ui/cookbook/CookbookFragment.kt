@@ -29,9 +29,16 @@ class CookbookFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = AdapterCookbook(emptyList(), isEditMode, viewModel::deleteRecipe) { bundle ->
-            findNavController().navigate(R.id.action_cookbookFragment_to_mealInformationFragment, bundle)
-        }
+        adapter = AdapterCookbook(
+            emptyList(),
+            isEditMode,
+            onRecipeClick = { bundle ->
+                findNavController().navigate(R.id.action_cookbookFragment_to_mealInformationFragment, bundle)
+            },
+            onItemRename = { recipe, newName, newDescription, newTime, newIngredients, newInstructions ->
+                viewModel.updateRecipe(recipe, newName, newDescription, newTime, newIngredients, newInstructions)
+            }
+        )
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
 
@@ -86,6 +93,12 @@ class CookbookFragment : Fragment() {
     private fun toggleEditMode() {
         isEditMode = !isEditMode
         adapter.toggleEditMode(isEditMode)
+        if (!isEditMode) {
+            val recipesToDelete = adapter.getRecipesToDelete()
+            recipesToDelete.forEach { recipeId ->
+                viewModel.deleteRecipe(recipeId)
+            }
+        }
         binding.addRecipeButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
         binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
     }

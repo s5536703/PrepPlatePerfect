@@ -2,7 +2,6 @@ package com.example.prepplateperfect.ui.shopping
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.prepplateperfect.R
 import com.example.prepplateperfect.databinding.FragmentShoppingListBinding
 
 class ShoppingFragment : Fragment() {
@@ -19,7 +19,7 @@ class ShoppingFragment : Fragment() {
 
     private val viewModel: ShoppingViewModel by viewModels()
     private var isEditMode = false
-    private lateinit var adapter: MyItemRecyclerViewAdapterShopping
+    private lateinit var adapter: AdapterShopping
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -33,7 +33,7 @@ class ShoppingFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = MyItemRecyclerViewAdapterShopping(
+        adapter = AdapterShopping(
             emptyList(), viewModel::removeItem, viewModel::updateItem, isEditMode)
         binding.list.layoutManager = LinearLayoutManager(context)
         binding.list.adapter = adapter
@@ -50,20 +50,21 @@ class ShoppingFragment : Fragment() {
 
     private fun observeItems() {
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            Log.d("ShoppingFragment", "Observed items: $items")
             adapter.updateItems(items ?: listOf())
         }
     }
 
     private fun promptForItemName() {
-        val editText = EditText(context)
-        AlertDialog.Builder(context)
-            .setTitle("Enter Item Name")
-            .setView(editText)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_item, null)
+        val itemNameInput = dialogView.findViewById<EditText>(R.id.itemNameInput)
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("Add Item")
+            .setView(dialogView)
             .setPositiveButton("Add") { _, _ ->
-                val name = editText.text.toString().trim()
-                if (name.isNotEmpty()) {
-                    viewModel.addItem(name)
+                val itemName = itemNameInput.text.toString().trim()
+                if (itemName.isNotEmpty()) {
+                    viewModel.addItem(itemName)
                 }
             }
             .setNegativeButton("Cancel", null)

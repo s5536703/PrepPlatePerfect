@@ -17,13 +17,12 @@ class OrganiserFragment : Fragment() {
     private var _binding: FragmentOrganiserBinding? = null
     private val binding get() = _binding!!
     private val viewModel: OrganiserViewModel by viewModels()
-    private lateinit var mealAdapter: MyItemRecyclerViewAdapterOrganiser
+    private lateinit var mealAdapter: AdapterOrganiser
     private var selectedDate: Calendar = Calendar.getInstance()
+    private var isEditMode = false
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOrganiserBinding.inflate(inflater, container, false)
         return binding.root
@@ -34,6 +33,7 @@ class OrganiserFragment : Fragment() {
         setupCalendar()
         setupRecyclerView()
         setupAddMealButton()
+        setupEditModeButton()
         updateMealReminders(selectedDate)
     }
 
@@ -46,7 +46,18 @@ class OrganiserFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        mealAdapter = MyItemRecyclerViewAdapterOrganiser()
+        mealAdapter = AdapterOrganiser(
+            items = emptyList(),
+            onDelete = { mealReminder ->
+                viewModel.removeMealReminder(selectedDate, mealReminder)
+                updateMealReminders(selectedDate)
+            },
+            onItemRename = { mealReminder, newName, newTime ->
+                viewModel.updateMealReminder(mealReminder, newName, newTime)
+                updateMealReminders(selectedDate)
+            },
+            isEditMode = isEditMode
+        )
         binding.mealRecyclerView.apply {
             adapter = mealAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -56,6 +67,12 @@ class OrganiserFragment : Fragment() {
     private fun setupAddMealButton() {
         binding.addMealButton.setOnClickListener {
             showAddMealDialog()
+        }
+    }
+
+    private fun setupEditModeButton() {
+        binding.toggleEditModeButton.setOnClickListener {
+            toggleEditMode()
         }
     }
 
@@ -80,9 +97,16 @@ class OrganiserFragment : Fragment() {
             .show()
     }
 
+    private fun toggleEditMode() {
+        isEditMode = !isEditMode
+        mealAdapter.toggleEditMode(isEditMode)
+        binding.addMealButton.visibility = if (isEditMode) View.VISIBLE else View.GONE
+        binding.toggleEditModeButton.text = if (isEditMode) "Done" else "Edit"
+    }
+
     private fun updateMealReminders(calendar: Calendar) {
         val mealReminders = viewModel.getMealRemindersForDay(calendar)
-        mealAdapter.submitList(mealReminders)
+        mealAdapter.updateItems(mealReminders)
     }
 
     override fun onDestroyView() {

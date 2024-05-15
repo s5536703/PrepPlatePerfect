@@ -6,18 +6,10 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/mealNameInput"
+        android:id="@+id/itemNameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/sub_meal_name"
-        android:autofillHints=""
-        android:inputType="" />
-
-    <EditText
-        android:id="@+id/mealTimeInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/sub_meal_time"
+        android:hint="@string/sub_item_name"
         android:autofillHints=""
         android:inputType="" />
 

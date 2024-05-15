@@ -13,8 +13,9 @@
     <string name="title_shopping">Shopping List</string>
     <string name="title_app_name">PrepPlatePerfect</string>
     <string name="title_your_recipes">Your Recipes</string>
+    <string name="title_meal_reminder">Meal Reminder</string>
     <string name="title_meal_information">Meal Information</string>
-    <string name="title_trending_recipes">Trending Recipes</string>
+    <string name="title_explore_recipes">Explore Recipes</string>
     <string name="title_add_ingredients">Add Ingredients to Shopping List</string>
 
 
@@ -33,6 +34,7 @@
     <string name="sub_star_rating">4.5 ★</string>
     <string name="sub_meal_time">Meal Time</string>
     <string name="sub_meal_name">Meal Name</string>
+    <string name="sub_item_name">Item Name</string>
     <string name="sub_recipe_name">Recipe Name</string>
     <string name="sub_recipe_time">Cooking Time</string>
     <string name="sub_example_item">Example Item</string>
