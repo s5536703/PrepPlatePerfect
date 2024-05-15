@@ -26,7 +26,7 @@ class OrganiserViewModel : ViewModel() {
     }
 
     fun updateMealReminder(mealReminder: MealReminder, newName: String, newTime: String) {
-        for ((key, value) in mealReminders) {
+        for ((_, value) in mealReminders) {
             val index = value.indexOfFirst { it.id == mealReminder.id }
             if (index != -1) {
                 value[index] = mealReminder.copy(mealName = newName, mealTime = newTime)

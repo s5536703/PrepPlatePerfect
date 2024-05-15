@@ -43,7 +43,8 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_edit"
             android:textColor="@color/white"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/addItemButton"
@@ -54,6 +55,7 @@
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
